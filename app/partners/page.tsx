@@ -1,0 +1,2 @@
+import { PartnerExhibition } from '@/components/home/PartnerExhibition';
+export default function Partners(){return <main className="page partners partners-page scene-page scene-legacy"><span className="stage-lamp" aria-hidden="true"/><section className="page-lead"><span className="eyebrow">ACT 05 — THE LEGACY</span><h1>الثقة تصنع<br/><em>قصصًا عظيمة.</em></h1><p className="arabic-copy">كل نجاح عظيم يبدأ بشراكة تؤمن بالفكرة. هذه بعض العلامات التي وثقت في رؤيتها معنا.</p></section><PartnerExhibition /></main>}
