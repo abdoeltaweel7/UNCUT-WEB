@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { siteConfig } from '@/data/siteConfig';
 import { services } from '@/data/services';
@@ -14,11 +14,22 @@ const sceneServices = [
 
 export default function Home() {
   const [activeScene, setActiveScene] = useState(2);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+
+    const startVideo = () => { void video.play().catch(() => undefined); };
+    if (video.readyState >= 2) startVideo();
+    else video.addEventListener('canplay', startVideo, { once: true });
+    return () => video.removeEventListener('canplay', startVideo);
+  }, []);
 
   return <main className="home">
     <aside className="scene-rail" aria-label="Page progress"><span>00</span><div className="rail-line"><i style={{height:`${(activeScene + 1) * 25}%`}}/></div><span>04</span></aside>
     <section className="hero scene grain" id="top">
-      <div className="hero-media" aria-hidden="true"><video className="hero-video" autoPlay muted loop playsInline preload="auto" poster="/scenes/final-stage.jpg"><source src="/media/hero-spotlight.mp4" type="video/mp4" /></video></div>
+      <div className="hero-media" aria-hidden="true"><video ref={heroVideoRef} className="hero-video" autoPlay muted loop playsInline preload="auto"><source src="/media/hero-spotlight.mp4" type="video/mp4" /></video></div>
       <span className="stage-lamp" aria-hidden="true"/>
       <div className="hero-shade"/><div className="hero-stage-mark">UNCUTS / 001 <span>●</span></div>
       <div className="hero-copy"><span className="eyebrow">ACT 01 — THE OPENING / {siteConfig.location}</span><h1>نصنع <em>الرؤية..</em><br/>لنلهم العالم.</h1><p>{siteConfig.arabicIntro}</p><div className="actions"><Link href="/work" className="button">اكتشف أعمالنا <span>↗</span></Link><Link href="/contact" className="text-link">ابدأ مشروعًا <span>↗</span></Link></div></div>

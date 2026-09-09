@@ -231,6 +231,12 @@ html:has(.home) body>.site-footer{scroll-snap-align:start;scroll-snap-stop:alway
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.opening-content{transition:none}.curtain-half{transition:none}.scroll-wheel:after{animation:none}}
 
+/* Use the supplied brand lockup and keep the hero video as its only visual source. */
+.brand-logo{display:block;width:138px;height:42px;object-fit:cover;object-position:center;filter:brightness(1.45) contrast(1.08)}
+.footer-logo{display:block;width:150px;height:56px;object-fit:cover;object-position:center;filter:brightness(1.45) contrast(1.08)}
+.hero-media{background:#070707}
+.hero-media:before{content:none}
+
 /* Cinematic art direction: every route is a room in the same production. */
 .nav{background:rgba(8,5,5,.94);backdrop-filter:none}
 .hero-media{background:#100607 url('/scenes/final-stage.jpg') center/cover}
@@ -476,3 +482,10 @@ html:has(.home) body>.site-footer{scroll-snap-align:start;scroll-snap-stop:alway
 
 /* The dedicated partner room uses the supplied gallery plate; the Home station keeps its own room. */
 .partners-page .legacy-scene{background-image:url('/scenes/partners-gallery.png')}
+
+@media(max-width:760px){
+  .reels-section .reel-card{width:100%}
+}
+
+.hero-media{background:#070707}
+.hero-media:before{content:none;background:none}
